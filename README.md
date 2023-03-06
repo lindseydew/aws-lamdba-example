@@ -28,3 +28,9 @@ https://medium.com/innomizetech/how-to-create-debug-and-deploy-aws-serverless-ap
 - On the `Configuration` tab select `fromHandler`. Under `Input` select `text`
 and copy and paste the contents of `get.json` from the events folder and save
 - Then run or debug from the console
+
+### Deploying
+- Run gradle buildZip. This will produce a zip file in build/distributions
+- Create a lambda function
+- Upload the zip to the lambda function
+- Set the path to the handler to be helloworld.App::handleRequest

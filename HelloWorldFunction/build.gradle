@@ -10,7 +10,8 @@ dependencies {
     implementation 'org.scala-lang:scala-library:2.13.9'
     implementation 'com.amazonaws:aws-lambda-java-core:1.2.1'
     implementation 'com.amazonaws:aws-lambda-java-events:3.11.0'
-    testRuntimeOnly 'org.scala-lang.modules:scala-xml_2.13:1.2.0'
+    testRuntimeOnly 'org.scala- lang.modules:scala-xml_2.13:1.2.0'
+    runtimeOnly 'com.amazonaws:aws-lambda-java-log4j2:1.5.1'
 }
 
 sourceSets {
@@ -21,5 +22,12 @@ sourceSets {
         scala {
             srcDirs = ['src/main/scala', 'src/main/java']
         }
+    }
+}
+task buildZip(type: Zip) {
+    from compileScala
+    from processResources
+    into('lib') {
+        from configurations.runtimeClasspath
     }
 }

@@ -10,9 +10,12 @@ To use the SAM CLI, you need the following tools.
 Make sure you have docker running
 
 ### Command line
+#### Invoke calling using API Gateway
 - `sam build && sam local start-api`
-- Either curl directly `curl http://localhost:3000/hello/developer`
-- Or invoke the lambda `sam local invoke HelloWorldFunction --event events/get.json`
+- `curl http://localhost:3000/hello/developer`
+#### Invoke lambda directly
+- `sam build`
+- `sam local invoke HelloWorldFunction --event events/get.json`
 
 ## With IntelliJ
 https://medium.com/innomizetech/how-to-create-debug-and-deploy-aws-serverless-application-with-java-using-intellij-idea-ed0e07d75fe4

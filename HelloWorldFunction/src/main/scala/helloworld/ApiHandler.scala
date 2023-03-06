@@ -18,9 +18,10 @@ object ApiHandler {
       request.getHttpMethod, request.getPath, context.getRemainingTimeInMillis) )
 
     println(s"""environment = ${sys.env.getOrElse("env", "n/a")}""")
-
     val name = request.getPathParameters.get("name")
-    Response(s"Heeeello ${name}!!", Map("Content-Type" -> "text/plain"))
+    val queryString = Option(request.getQueryStringParameters).map(_.asScala)
+    val fooParam = queryString.flatMap(_.get("foo"))
+    Response(s"Hello ${name}. ${fooParam.fold("no query strings")(param => s"Your query string is ${param}")} ", Map("Content-Type" -> "text/plain"))
   }
 
   case class Response(body: String, headers: Map[String,String], statusCode: Int = 200) {
